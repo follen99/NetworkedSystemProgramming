@@ -51,17 +51,27 @@ int main(int argc, char *argv[]) {
     }
     alen = sizeof(cad);
 
-  
     while (1) {
-        if ( (sd2=accept(sd, (struct sockaddr *)&cad, &alen)) < 0) {
-            fprintf(stderr, "accept failed\n");
-            exit(1); 
-        }
-    visits++;
-    sprintf(buf,"This server has been contacted %d time%s\n", visits, visits==1 ? "." : "s.");
+        sd2 = accept(sd, (struct sockaddr*) &cad, &alen);
 
-    write(sd2, buf, strlen(buf));
-    close (sd2);
-  }
+        /*
+        prima soluzione
+        int a,b;
+        read(sd2, &a, sizeof(int));
+        read(sd2, &b, sizeof(int));
+
+        long prod = a* (long)b;
+
+        */
+
+       int values[2];
+       read(sd2, &values, sizeof(values));
+       long prod = values[0] * (long) values[1];
+
+        write(sd2, &prod, sizeof(long));
+
+        close (sd2);
+    }
+    close(sd); // non ci arrivo mai
 }
  

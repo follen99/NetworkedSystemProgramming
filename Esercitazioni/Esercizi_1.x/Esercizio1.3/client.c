@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define PROTOPORT  5193
-#define LOCALHOST "127.0.0.1"
+#define LOCALHOST "127.0.0.1" // costante indirizzo loopback
 
 int main(int argc, char const *argv[]){
     struct sockaddr_in sad;
@@ -53,15 +53,33 @@ int main(int argc, char const *argv[]){
         exit(1);
     }
 
-    n = read(sd, buf, sizeof(buf));
-    // siccome potremmo dover leggere più segmenti, leggiamo finchè non c'è più nulla da leggere
-    while (n > 0)
-    {
-        write(1, buf, n);
-        n = read(n, buf, sizeof(buf));
-    }
-    
 
+
+    /*
+    prima soluzione
+    int a;
+    int b;
+
+    printf("Inserisci i due numeri da moltiplicare.\n Inserisci il primo valore: "); scanf("%d", &a);
+    printf("Inserisci il secondo valore: "); scanf("%d", &b);
+    // inviare dati qui
+
+    
+    write(sd, &a, sizeof(int));
+    write(sd, &b, sizeof(int));
+    */
+
+    int values[2];
+    printf("Inserisci i due numeri da moltiplicare.\n Inserisci il primo valore: "); scanf("%d", &values[0]);
+    printf("Inserisci il secondo valore: "); scanf("%d", &values[1]);
+
+    write(sd, &values, sizeof(values));
+
+    // leggo la risposta
+    long prod;
+    read(sd, &prod, sizeof(long)); //salvo il risultato nella variabile prod    
+
+    printf("Il risultato e': %ld\n", prod);
     close(sd); // chiudo la socket
     return 0;
 }
