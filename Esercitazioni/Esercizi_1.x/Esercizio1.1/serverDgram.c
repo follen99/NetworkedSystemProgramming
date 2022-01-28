@@ -23,8 +23,7 @@ the local socket (server) */
   serverAddr.sin_port = htons(PROTOPORT);
   serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   /* Assign the transport address to the local socket (server) */
-  bind(serverSocket, (struct sockaddr*)&serverAddr,
-sizeof(serverAddr));
+  bind(serverSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
   clientAddrLen = sizeof(clientAddr);
   /* The continuous loop characterizes the permanent execution of the
 server */
@@ -33,20 +32,18 @@ while(1) {
 */
       memset(buf, 0, sizeof(buf));
       /* Receive the data from the client and put them in buf */
-      recvfrom(serverSocket, buf, sizeof(buf), 0, (struct
-sockaddr*)&clientAddr, &clientAddrLen);
+      recvfrom(serverSocket, buf, sizeof(buf), 0, (struct sockaddr*)&clientAddr, &clientAddrLen);
       /* The request message is processed */
       /* The status variable (visits) is incremented and the response
 message is built */
-visits++;
+      visits++;
 
       memset(buf, 0, sizeof(buf));
-      sprintf(buf,"This server has been contacted %d time%s\n",
-visits, visits==1 ? "." : "s.");
+      sprintf(buf,"This server has been contacted %d time%s\n", visits, visits==1 ? "." : "s.");
       /* The response message has been produced */
       /* Send the data by copying the data in buf to the system */
-      sendto(serverSocket, buf, sizeof(buf), 0, (struct sockaddr
-*)&clientAddr, clientAddrLen);
+      sendto(serverSocket, buf, sizeof(buf), 0, (struct sockaddr*)&clientAddr, clientAddrLen);
+    }
+    return 0; 
 }
-return 0; }
  

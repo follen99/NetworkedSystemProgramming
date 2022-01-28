@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
 the remote socket */
   int     sd;
   int     port;
-*/
   int     n;
   char    buf[1000];
 char *host;
