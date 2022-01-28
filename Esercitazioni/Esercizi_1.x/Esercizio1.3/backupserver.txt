@@ -1,0 +1,69 @@
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define PROTOPORT 5193 /* Default port number */
+#define QLEN 6    /* Size of connection requests queue   */
+
+int main(int argc, char const *argv[])
+{
+    struct sockaddr_in sad; // struct che salva l'indirizzo di trasporto del server
+    struct sockaddr_in cad; // struct che salva l'indirizzo di trasporto del client
+
+    int sd, sd2;
+    int port;
+    socklen_t alen;
+
+    char buf[1000];
+    int visits = 0;
+
+    sd = socket(PF_INET, SOCK_STREAM, 0);
+    if (sd < 0)
+    {
+        perror("Socket() error");
+        exit(1);
+    }
+
+    memset((char*) &sad, 0, sizeof(sad));
+
+    sad.sin_family = AF_INET;
+    sad.sin_addr.s_addr = htonl(INADDR_ANY);
+
+    if (argc > 1)
+    {
+        port = atoi(argv[1]);
+    }else{
+        port = PROTOPORT;   // default
+    }
+
+    sad.sin_port = htons((u_short) port); // assegno la porta dopo averla decisa
+
+    if (bind(sd, (struct sockaddr*) &sad, sizeof(sad)) < 0)
+    {
+        perror("bind() error");
+        exit(1);
+    }
+
+    printf("using address %u:%i",htonl(INADDR_ANY),PROTOPORT);
+
+    alen = sizeof(cad);
+    while (1)
+    {
+        if((sd2 = accept(sd, (struct sockaddr*) &cad, &alen)) < 0){
+            //fprintf("accept() error: %i", sd2);
+            printf("accept() Error: %i", sd2);
+            exit(1);
+        }
+    }
+    
+    visits ++;
+    // do something here
+    sprintf(buf, "questo server è stato contattato %i volte", visits);
+    write(sd2, buf, strlen(buf));
+    
+    
+    close(sd2); // sd rimane aperta per altri contatti
+    return 0;
+}

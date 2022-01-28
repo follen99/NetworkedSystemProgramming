@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
 the remote socket */
   int     sd;
   int     port;
-*/
   int     n;
   char    buf[1000];
 char *host;
@@ -49,8 +48,8 @@ the remote socket (server) */
 if (argc > 1) {
         host = argv[1]; /* if host argument is specified */
 } else {
+  host = LOCALHOST;
  }
-host = LOCALHOST;
   sad.sin_addr.s_addr = inet_addr(host);
   /* Connect the local socket (sd) with the remote one identified by
 the transport address sad */

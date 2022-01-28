@@ -6,10 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define PROTOPORT
-#define QLEN
-5193 /* Default port number */
-6    /* Size of connection requests queue   */
+#define PROTOPORT 5193 /* Default port number */
+#define QLEN 6    /* Size of connection requests queue   */
 int main(int argc, char *argv[]) {
   struct  sockaddr_in sad; /* Struct to store the transport address of
 the server socket */
@@ -18,7 +16,6 @@ the client socket */
   int     sd, sd2;
   int     port;
   socklen_t     alen;
-*/
   char    buf[1000];
   int     visits = 0;
 /* Socket descriptors */
