@@ -1,3 +1,3 @@
 Compilare e mandare in esecuzione il codice degli esercizi 
-visti nell'esercitazione precedente (UDP) ed osservare il traffico
+visti nell'esercitazione precedente (TCP) ed osservare il traffico
 tramite wireshark.
