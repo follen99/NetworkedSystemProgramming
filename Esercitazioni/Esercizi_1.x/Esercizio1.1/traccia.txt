@@ -1,0 +1,3 @@
+Compilare e mandare in esecuzione il codice degli esercizi 
+visti nell'esercitazione precedente ed osservare il traffico
+tramite wireshark.
