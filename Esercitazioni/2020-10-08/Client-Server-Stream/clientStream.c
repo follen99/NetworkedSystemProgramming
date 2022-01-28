@@ -1,9 +1,4 @@
- /*
- * clientStream.c
- *
- *  Created on: October 8, 2020
- *      Author: zimeo
- */
+
 /*#include <sys/types.h>*/
 #include <sys/socket.h>
 #include <netinet/in.h>
