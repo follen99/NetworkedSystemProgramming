@@ -36,6 +36,8 @@ int main(int argc, char *argv[]){
 
     // fase di invio
 
+    /*
+    prima soluzione
     printf("Inserisci i due numeri da moltiplicare.\n Inserisci il primo valore: "); scanf("%d", (int*)buf);
     printf("Inserisci il secondo valore: "); scanf("%d", (int*) (buf + sizeof(int)));
 
@@ -47,6 +49,20 @@ int main(int argc, char *argv[]){
 
     printf("Il prodotto e': %ld\n", *(long*) buf);    //stampo il contenuto del buffer
     close(clientSocket);
+    */
 
+    int operandi[2];
+
+    printf("Inserisci i due numeri da moltiplicare.\n Inserisci il primo valore: "); scanf("%d", &operandi[0]);
+    printf("Inserisci il secondo valore: "); scanf("%d", &operandi[1]);
+
+    sendto(clientSocket, operandi, sizeof(operandi), 0, (struct sockaddr*) &remoteAddr, remoteAddrLen); // il numero di byte che voglaimo invare corrisponde a 2*sizeof(int)
+
+    memset(buf, 0, sizeof(buf));
+
+    recvfrom(clientSocket, buf, sizeof(long), 0, (struct sockaddr*) &remoteAddr, &remoteAddrLen);
+
+    printf("Il prodotto e': %ld\n", *(long*) buf);    //stampo il contenuto del buffer
+    close(clientSocket);
     return 0;
 }

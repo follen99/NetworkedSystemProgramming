@@ -26,6 +26,7 @@ int main(int argc, char const *argv[])
 
     
     while(1){
+        /* prima soluzione
         memset(buf, 0, sizeof(buf));
 
         int a,b;
@@ -37,6 +38,19 @@ int main(int argc, char const *argv[])
 
 
         long prod = a * (long) b;
+        
+        memset(buf, 0, sizeof(buf));
+        //sprintf(buf, "Questo server è stato visitato %ld volte", prod);
+
+        sendto(serverSocket, &prod, sizeof(buf), 0, (struct sockaddr*) &clientAddr, clientAddrLen);
+        */
+
+        int operandi[2];
+
+        recvfrom(serverSocket, operandi, sizeof(operandi), 0, (struct sockaddr*) &clientAddr, &clientAddrLen);
+
+
+        long prod = operandi[0] * (long) operandi[1];
         
         memset(buf, 0, sizeof(buf));
         //sprintf(buf, "Questo server è stato visitato %ld volte", prod);
