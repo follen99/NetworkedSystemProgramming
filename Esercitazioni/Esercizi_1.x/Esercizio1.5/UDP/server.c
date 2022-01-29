@@ -22,8 +22,7 @@ int main(int argc, char const *argv[])
 
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(PROTOPORT);
-    //serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    serverAddr.sin_addr.s_addr = inet_addr("192.168.1.45");
+    serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     bind(serverSocket, (struct sockaddr*) &serverAddr, sizeof(serverAddr));
     clientAddrLen = sizeof(clientAddr);
