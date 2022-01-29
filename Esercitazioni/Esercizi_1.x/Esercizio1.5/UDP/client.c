@@ -9,6 +9,7 @@
 
 #define PROTOPORT  5193
 #define LOCALHOST  "127.0.0.1"  
+#define LOCAL_IP "192.168.1.45"
 
 int main(int argc, char *argv[]){
     char buf[256];
@@ -17,11 +18,13 @@ int main(int argc, char *argv[]){
     socklen_t remoteAddrLen;
 
     char *host;
-    if(argc > 1){
+    
+    /*if(argc > 1){
         host = argv[1];
     }else{
         host = LOCALHOST;
-    }
+    }*/
+    host = LOCAL_IP;
 
     clientSocket = socket(PF_INET, SOCK_DGRAM, 0);
 
