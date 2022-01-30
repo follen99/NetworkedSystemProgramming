@@ -53,13 +53,14 @@ int main(int argc, char *argv[]) {
 
     while (1) {
         sd2 = accept(sd, (struct sockaddr*) &cad, &alen);
+        visits++;
 
 
         char name[256];
-        read(sd2, &buf, sizeof(buf));
+        read(sd2, &name, sizeof(name));
         
         memset(buf, 0, sizeof(buf));
-        sprintf(buf, "%s, sei il %d° utente del server!\n");
+        sprintf(buf, "%s, sei il %d° utente del server!\n", name, visits);
 
         printf("%s", buf);
         write(sd2, &buf, sizeof(buf));

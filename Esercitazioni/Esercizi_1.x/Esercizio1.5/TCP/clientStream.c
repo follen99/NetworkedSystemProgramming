@@ -58,7 +58,7 @@ int main(int argc, char const *argv[]){
     char name[256];
     printf("Inserisci il tuo nome: "); scanf("%s", name);
 
-    write(sd, &buf, sizeof(buf));
+    write(sd, &name, sizeof(buf));
 
     
 
