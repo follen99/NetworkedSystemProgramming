@@ -62,6 +62,17 @@ int main(int argc, char *argv[]) {
     int state = PEER;
     int actualLen = 0;
 
+    char otherUser[256];
+    // leggo prima il mio nome
+    printf("Inserisci il tuo username: "); scanf("%s",buf);
+
+    // ricevo l'username del tipo
+    read(sd2, &otherUser, sizeof(otherUser));
+    printf("Stai parlando con: %s\n", otherUser);
+
+    // solo dopo invio il mio
+    write(sd2, &buf, strlen(buf));
+
     while(state != EXIT){
         switch (state){
         case YOU:
@@ -87,7 +98,7 @@ int main(int argc, char *argv[]) {
                 read(sd2, &actualLen, sizeof(actualLen));
                 
                 read(sd2, &buf, sizeof(buf));
-                printf("Risposta: %s\n", buf);
+                printf("%s: %s\n",otherUser, buf);
 
                 if((buf[strlen(buf)-1]) == '-') state = YOU;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;

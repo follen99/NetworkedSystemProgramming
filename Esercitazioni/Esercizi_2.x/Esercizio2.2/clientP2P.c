@@ -63,6 +63,14 @@ int main(int argc, char const *argv[]){
 
     int state = YOU;
     int actualLen = 0;
+    char otherUser[256];
+
+    // leggo ed invio il mio username
+    printf("Inserisci il tuo username: "); scanf("%s",buf);
+    write(sd, &buf, strlen(buf));
+
+    read(sd, &otherUser, sizeof(otherUser));
+    printf("Stai parlando con: %s\n", otherUser);
 
     while(state != EXIT){
         switch (state){
@@ -89,7 +97,7 @@ int main(int argc, char const *argv[]){
                 read(sd, &actualLen, sizeof(actualLen));
                 
                 read(sd, &buf, sizeof(buf));
-                printf("Risposta: %s\n", buf);
+                printf("%s: %s\n",otherUser, buf);
 
                 if((buf[strlen(buf)-1]) == '-') state = YOU;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;
