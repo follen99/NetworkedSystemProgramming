@@ -73,7 +73,7 @@ int main(int argc, char const *argv[]){
                 printf("Messaggio: "); scanf("\n%[^\n]", buf);
                 actualLen = strlen(buf);
                 write(sd, &actualLen, sizeof(actualLen));
-                printf("Byte trasmessi: %d", write(sd, &buf, actualLen));
+                write(sd, &buf, actualLen);
 
                 if((buf[strlen(buf)-1]) == '-') state = PEER;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;
@@ -87,12 +87,11 @@ int main(int argc, char const *argv[]){
             do{
                 memset(buf, 0, sizeof(buf));
                 read(sd, &actualLen, sizeof(actualLen));
-                printf("Actual string len: %d\n", actualLen);
                 
                 read(sd, &buf, sizeof(buf));
-                printf("%s\n", buf);
+                printf("Risposta: %s\n", buf);
 
-                if((buf[strlen(buf)-1]) == '-') state = PEER;
+                if((buf[strlen(buf)-1]) == '-') state = YOU;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;
                 
             }while(state == PEER);
@@ -107,12 +106,7 @@ int main(int argc, char const *argv[]){
             break;
         }
     }
-
-
-
-    
-
-    printf("\nHai chiuso la connessione.");
+    printf("\nLa connessione è stata chiusa.");
     return 0;
 }
 

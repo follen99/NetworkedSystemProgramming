@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
                 printf("Messaggio: "); scanf("\n%[^\n]", buf);
                 actualLen = strlen(buf);
                 write(sd2, &actualLen, sizeof(actualLen));
-                printf("Byte trasmessi: %d", write(sd2, &buf, actualLen));
+                write(sd2, &buf, actualLen);
 
                 if((buf[strlen(buf)-1]) == '-') state = PEER;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;
@@ -85,15 +85,15 @@ int main(int argc, char *argv[]) {
             do{
                 memset(buf, 0, sizeof(buf));
                 read(sd2, &actualLen, sizeof(actualLen));
-                printf("Actual string len: %d\n", actualLen);
                 
                 read(sd2, &buf, sizeof(buf));
-                printf("%s\n", buf);
+                printf("Risposta: %s\n", buf);
 
-                if((buf[strlen(buf)-1]) == '-') state = PEER;
+                if((buf[strlen(buf)-1]) == '-') state = YOU;
                 if((buf[strlen(buf)-1]) == '.') state = EXIT;
                 
             }while(state == PEER);
+
             break;
         case EXIT:
             close(sd2); // chiudo la socket
@@ -106,6 +106,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    printf("\nLa connessione è stata chiusa.");
     close(sd); // non ci arrivo mai
+    return 0;
 }
  
