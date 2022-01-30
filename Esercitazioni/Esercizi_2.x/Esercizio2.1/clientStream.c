@@ -64,13 +64,11 @@ int main(int argc, char const *argv[]){
 
         printf("Byte trasmessi: %d", write(sd, &buf, actualLen));
     }while((buf[strlen(buf)-1]) != '.');
-
-    
-
-
     // non serve leggere la risposta del server
 
     close(sd); // chiudo la socket
+
+    printf("\nHai chiuso la connessione.");
     return 0;
 }
 

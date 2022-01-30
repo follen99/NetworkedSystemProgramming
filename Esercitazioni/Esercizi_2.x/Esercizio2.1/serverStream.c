@@ -76,10 +76,11 @@ int main(int argc, char *argv[]) {
         printf("Actual string len: %d\n", actualLen);
         
         read(sd2, &buf, sizeof(buf));
-        printf("%s", buf);
-        printf("\n");
+        printf("%s\n", buf);
         
-    }while((buf[strlen(buf)-1]) != '.');
+    }while((buf[actualLen-1]) != '.');
+
+    printf("\nIl client ha chiuso la connessione.");
 
     close(sd); // non ci arrivo mai
 }
