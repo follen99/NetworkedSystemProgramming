@@ -1,6 +1,5 @@
 package Esercizio_5_3.SingleThread;
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,10 +10,10 @@ import java.util.Scanner;
  * @Project Esercizi_5.x
  * @AUTHOR giulianoranauro on 01/02/22
  */
-public class FactorialStreamConcurrentHandler implements ProtocolHandler {
+public class FactorialStreamClientHandler implements ProtocolHandler {
     private Socket connectionSocket;
     Scanner fromUser;
-    public FactorialStreamConcurrentHandler(Socket clientSocket) {
+    public FactorialStreamClientHandler(Socket clientSocket) {
         this.connectionSocket = clientSocket;
     }
 

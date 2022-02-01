@@ -23,7 +23,7 @@ public class FactorialStreamServer {
     public void start() throws IOException {
         while (true){
             Socket acceptSocket = this.serverSocket.accept();
-            ProtocolHandler handler = new FactorialStreamConcurrentServer(acceptSocket);
+            ProtocolHandler handler = new FactorialStreamServerHandler(acceptSocket);
             handler.handle();
         }
     }

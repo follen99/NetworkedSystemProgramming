@@ -3,21 +3,20 @@ package Esercizio_5_3.SingleThread;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
 
 /**
  * @Project Esercizi_5.x
  * @AUTHOR giulianoranauro on 01/02/22
  */
-public class FactorialStreamConcurrentServer implements ProtocolHandler {
+public class FactorialStreamServerHandler implements ProtocolHandler {
     private Socket connectionSocket;
-    public FactorialStreamConcurrentServer(Socket acceptSocket) {
+    public FactorialStreamServerHandler(Socket acceptSocket) {
         this.connectionSocket = acceptSocket;
     }
 
     @Override
-    public void handle() throws IOException {
+    public void handle(){
         try {
             DataInputStream inFromClient = new DataInputStream(connectionSocket.getInputStream());
             DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
@@ -34,13 +33,17 @@ public class FactorialStreamConcurrentServer implements ProtocolHandler {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-          if (connectionSocket != null) connectionSocket.close();
+          try {
+              if (connectionSocket != null) connectionSocket.close();
+          } catch (IOException e) {
+              System.err.println("couldn't close the socket!");
+          }
 
         }
     }
 
     private int fact(int n) {
-        if (n <= 2) return 2;
+        if (n <= 2) return n;
         return n * fact(n - 1);
     }
 }

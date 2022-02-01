@@ -20,7 +20,7 @@ public class FactorialStreamClient {
     }
 
     private void start() throws IOException {
-        ProtocolHandler handler = new FactorialStreamConcurrentHandler(clientSocket);
+        ProtocolHandler handler = new FactorialStreamClientHandler(clientSocket);
         handler.handle();
     }
 }
