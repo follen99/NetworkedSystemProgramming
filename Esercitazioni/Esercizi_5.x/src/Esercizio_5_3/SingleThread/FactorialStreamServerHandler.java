@@ -29,6 +29,7 @@ public class FactorialStreamServerHandler implements ProtocolHandler {
                 f = fact(n);
 
                 outToClient.writeInt(f);
+                System.out.println("Serving client " + connectionSocket.getInetAddress() + ":" + connectionSocket.getLocalPort() + ".\n Response: " + f);
             }while (n > 0);
         } catch (IOException e) {
             e.printStackTrace();
