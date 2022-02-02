@@ -1,4 +1,4 @@
-package Esercizio_6_3;
+package Esercizio_6_3.SenderDoesNotGetMessageToo;
 
 import Esercizio_6_2.ProtocolHandler;
 
@@ -15,7 +15,7 @@ public class MultiUserChatServer {
     }
 
     private void start(){
-        Room room = new Room(0); // l'oggetto room viene istanziato solo una volta
+        RoomRev1 roomRev1 = new RoomRev1(0); // l'oggetto room viene istanziato solo una volta
         try {
             while (true){
                 Socket connectionSocket = welcomeSocket.accept();
@@ -25,7 +25,7 @@ public class MultiUserChatServer {
                  * ogni volta che viene creato un handler per servire uno specifico client,
                  * ad ognuno di questi handler viene passato l'oggetto room (condiviso da tutti i client per ora)
                  * */
-                ProtocolHandler handler = new MultiUserChatServerHandler(connectionSocket, room);   //
+                ProtocolHandler handler = new MultiUserChatServerHandler(connectionSocket, roomRev1);   //
                 handler.handle();
             }
         } catch (IOException e) {

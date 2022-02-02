@@ -1,4 +1,4 @@
-package Esercizio_6_3;
+package Esercizio_6_3.SenderGetsMessageToo;
 
 import java.io.IOException;
 import java.io.PrintStream;

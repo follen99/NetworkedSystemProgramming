@@ -1,4 +1,4 @@
-package Esercizio_6_3;
+package Esercizio_6_3.SenderGetsMessageToo;
 
 import Esercizio_6_2.ProtocolHandler;
 
