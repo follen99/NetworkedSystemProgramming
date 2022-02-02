@@ -8,8 +8,9 @@ import java.util.List;
 
 public class Room {
     private List<PrintStream> list = new ArrayList<>(); // contiene tutti i prinstream dei vari client
-    public Room(){
-
+    private int id;
+    public Room(int id){
+        this.id = id;
     }
     public synchronized void broadCast(String s) {
         for (PrintStream ps : this.list)
@@ -21,6 +22,10 @@ public class Room {
         this.list.add(new PrintStream(chatSocket.getOutputStream()));
     }
 
+    public void showRoomToClients(){
+        this.broadCast("You are in the room: " + this.id);
+    }
+
     /**
      * Questo metodo dovrebbe essere usato nel momento in cui
      * un client chiude la connessione, è inutile inviare messaggi
@@ -28,5 +33,13 @@ public class Room {
      * */
     public synchronized void remove(Socket socket){
         // da implementare
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -27,10 +27,13 @@ public class MultiUserChatServerHandler extends Thread implements ProtocolHandle
         try {
             Scanner inpuStream = new Scanner(this.chatSocket.getInputStream());
             PrintStream outStream = new PrintStream(this.chatSocket.getOutputStream());
+            room.showRoomToClients();
 
             boolean end = false; // flag
             do {
                 String line = inpuStream.nextLine();
+
+
                 line = chatSocket.getInetAddress() + " > " + line;  // costruisco il messaggio identificando il client
 
                 end = line.endsWith(".");

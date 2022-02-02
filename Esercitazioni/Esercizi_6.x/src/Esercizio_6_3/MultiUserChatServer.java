@@ -15,7 +15,7 @@ public class MultiUserChatServer {
     }
 
     private void start(){
-        Room room = new Room(); // l'oggetto room viene istanziato solo una volta
+        Room room = new Room(0); // l'oggetto room viene istanziato solo una volta
         try {
             while (true){
                 Socket connectionSocket = welcomeSocket.accept();

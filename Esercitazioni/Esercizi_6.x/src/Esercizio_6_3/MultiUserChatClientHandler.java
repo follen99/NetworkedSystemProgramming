@@ -16,6 +16,8 @@ public class MultiUserChatClientHandler implements ProtocolHandler {
 
     @Override
     public void handle() throws IOException {
+
+
         // riusiamo le classi writer e reader già usate nell'esercizio 6.2, il client è praticamente lo stesso!
         Writer writer = new Writer(this.communicationSocket);
         Reader reader = new Reader(this.communicationSocket);
