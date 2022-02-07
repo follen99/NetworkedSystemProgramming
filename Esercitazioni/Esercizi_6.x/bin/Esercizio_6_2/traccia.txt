@@ -1,0 +1,27 @@
+E' una variante del 4.5 nel quale si doveva realizzare l'handler per una chat half duplex;
+In quell'esercizio eravamo costretti ad usare un protocollo di gestione dell'alternanza di
+tipo half duplex per consentire lo scambio di messaggi.
+
+Ora vogliamo realizzare una variante nella quale le oeprazioni di lettura/scrittura pososno
+avvenire in modo concorrente.
+Invece di usare la select() usiamo i thread.
+
+Ci basterà riscrivere solo l'handler in modo da consentire ai due interlocutori di leggere
+e scrivere senza attese.
+
+----------------------------------------------------------------------------------------------------
+
+Se l'esecuzione deve essere concorrente, quindi ad entrambi è consentito leggere e scrivere sempre,
+l'operazione di lettura (bloccante!) deve essere posta all'interno di un thread, in modo che la
+sospensione non riguardi l'intero processo, ma solo l'operazione di lettura.
+
+dobbiamo quindi prevedere due thread diversi, ed assumiamo che i due frammenti di codice siano diversi.
+quindi creiamo una classe di thread usati per scrivere, chiamati writers, ed una classe di thread usati
+per leggere dal canale, chiamati readers
+
+----------------------------------------------------------------------------------------------------
+
+Il problema di questa implementazione è che quando (ad esempio) il client chiude la connessione digitando ".",
+le socket che vengono chiuse sono solo due: writer del client e reader del server!
+
+possiamo prevedere dei gruppi per risolvere questo problema

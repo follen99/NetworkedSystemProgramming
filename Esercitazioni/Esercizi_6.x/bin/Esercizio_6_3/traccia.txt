@@ -1,0 +1,10 @@
+Vogliamo ancora una volta realizzare un'applicazione di instant messaging;
+la differenza è che l'app dovrebbe essere multi utente, e dobbiamo prevedere che diversi utenti possano dialogare,
+utilizzando un meccanismo di "stanza virtuale"; quindi tutti gli utenti che sono all'interno di una stanza possono dialogare tra loro.
+In questo caso l'architettura usata è diversa: non avremo un server che funge anche da client, ma avremo un unico server e diversi client;
+saranno i client a dialogare con il server.
+
+La traccia ci suggerisce di usare un server _MultiUserChatServer_, ed un client _MultiUserChatClient_ ed infine un handler _MultiUserChatHandler_;
+sarà l'handler che gestirà, lato server, la propagazione dei messaggi verso TUTTI i client connessi.
+
+Inizialmente l'applicazione verrà usata in locale, ma successivamente si userà un server esterno per poter dialogare con client remoti.
