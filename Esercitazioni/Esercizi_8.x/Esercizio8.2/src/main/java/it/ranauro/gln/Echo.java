@@ -34,15 +34,7 @@ public class Echo extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		
-		/*pw.println("First name: " + firstname);
-		pw.println("Last name: " + lastname);*/
 		
-		/*String responseHTML = "<body> "
-				+ "<H1> "
-				+ "Tu ti chiami..."
-				+ " </H1>"
-				+ "" + firstname + " " + lastname
-				+ " </body>";*/
 		String responseHTML = "<H1>"
 				+ "Ti chiami:"
 				+ "</H1>"
