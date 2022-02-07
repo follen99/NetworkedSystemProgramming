@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+/Users/giulianoranauro/Desktop/GitHub/NetworkedSystemProgramming/Esercitazioni/Esercizi_9.x/.metadata/.plugins/org.eclipse.jdt.core
