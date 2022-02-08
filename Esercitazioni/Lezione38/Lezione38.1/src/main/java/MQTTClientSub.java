@@ -5,7 +5,7 @@ public class MQTTClientSub {
     private static MqttClient subscriber;
 
     public static void main(String[] args) throws MqttException {
-        String brokerAccess = "rcp://127.0.0.1:1883";
+        String brokerAccess = "tcp://127.0.0.1:1883";
         subscriber = new MqttClient(brokerAccess, "sub1");
         subscriber.connect();
 
